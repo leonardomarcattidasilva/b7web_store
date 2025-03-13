@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function index(): string
+    public function index(): View
     {
-        return "<h1>Welcome</h1>";
+        return view('home');
     }
 }
