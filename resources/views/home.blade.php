@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="pt">
-<x-top />
+
+<x-top title="B7Web Store" />
 
 <body>
     <x-header />
