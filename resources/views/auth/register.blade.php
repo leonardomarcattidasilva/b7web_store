@@ -4,30 +4,53 @@
 <x-top title="Registre-se" styles="loginSignUpStyle" />
 
 <body>
-    <a href="index.html" class="back-button">← Voltar</a>
+    <a href="{{route('login')}}" class="back-button">← Voltar</a>
     <div class="login-page">
         <div class="login-area">
             <h3 class="login-title">B7Store</h3>
-            <div class="text-login">
-                Preencha os campos abaixo e realize seu cadastro.
-            </div>
-            <form>
+            <form action="{{route('saveRegister')}}" method="post">
+                @csrf
                 <div class="name-area">
                     <div class="name-label">Nome</div>
-                    <input type="text" placeholder="Digite o seu nome" />
+                    <input type="text" name="name" placeholder="Digite o seu nome" value="{{old('name')}}" />
+                    <small>{{$errors->first('name')}}</small>
                 </div>
                 <div class="email-area">
                     <div class="email-label">E-mail</div>
-                    <input type="email" placeholder="Digite o seu e-mail" />
+                    <input type="email" name="email" placeholder="Digite o seu e-mail" value="{{old('email')}}" />
+                    <small>{{$errors->first('email')}}</small>
+                </div>
+                <div class="state-area">
+                    <div class="state-label">Estado</div>
+                    <select name="state_id" id="state_id" require>
+                        <option value="" name="">Selecione um estado</option>
+                        @foreach($states as $state)
+                        @if($state['id'] == old('state_id'))
+                        <option name="{{$state['id']}}" selected value="{{$state['id']}}" id="">{{$state['uf']}} - {{$state['state']}}</option>
+                        @else
+                        <option name="{{$state['id']}}" value="{{$state['id']}}" id="">{{$state['uf']}} - {{$state['state']}}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                    <small>{{$errors->first('state_id')}}</small>
                 </div>
                 <div class="password-area">
                     <div class="password-label">Senha</div>
                     <div class="password-input-area">
-                        <input type="password" placeholder="Digite a sua senha" />
+                        <input type="password" name="password" placeholder="Digite a sua senha" />
                         <img src="{{asset('temp/icons/eyeIcon.png')}}" alt="Ícone mostrar senha" />
                     </div>
+                    <small>{{$errors->first('password')}}</small>
+                    <div class="password-label">Repita Senha</div>
+                    <div class="password-input-area">
+                        <input type="password" name="password_confirmation" placeholder="Repita a sua senha" />
+                        <img src="{{asset('temp/icons/eyeIcon.png')}}" alt="Ícone mostrar senha" />
+                    </div>
+                    @if(isset($errors->get('password')[1]))
+                    <small>{{ $errors->get('password')[1] }}</small>
+                    @endif
                 </div>
-                <button class="login-button">Cadastrar</button>
+                <button type="submit" class="login-button">Cadastrar</button>
             </form>
             <div class="register-area">
                 Já tem cadastro? <a href="{{route('login')}}">Fazer Login</a>

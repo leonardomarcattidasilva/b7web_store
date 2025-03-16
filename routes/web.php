@@ -10,5 +10,7 @@ Route::controller(PagesController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
+    Route::post('/saveRegister', 'saveRegister')->name('saveRegister');
     Route::get('/login', 'login')->name('login');
+    Route::get('/forgotPassword', 'forgotPassword')->name('forgotPassword');
 });

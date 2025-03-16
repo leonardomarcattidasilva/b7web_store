@@ -3,13 +3,9 @@
 <x-top title="Login" styles="loginSignUpStyle" />
 
 <body>
-    <a href="index.html" class="back-button">← Voltar</a>
     <div class="login-page">
         <div class="login-area">
             <h3 class="login-title">B7Store</h3>
-            <div class="text-login">
-                Use as suas credenciais para realizar o Login.
-            </div>
             <form>
                 <div class="email-area">
                     <div class="email-label">E-mail</div>
@@ -18,7 +14,7 @@
                 <div class="password-area">
                     <div class="password-label">
                         <div class="password-area-text">Senha</div>
-                        <a href="" class="password-area-forgot">Esqueceu sua senha?</a>
+                        <a href="{{route('forgotPassword')}}" class="password-area-forgot">Esqueceu sua senha?</a>
                     </div>
                     <div class="password-input-area">
                         <input type="password" placeholder="Digite a sua senha" />
